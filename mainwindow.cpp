@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     _login_dlg = new LoginDialog();
+    takeCentralWidget();
     setCentralWidget(_login_dlg);
     _login_dlg->show();
 
@@ -16,15 +17,23 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-    if(_login_dlg) delete _login_dlg;
-    _login_dlg = nullptr;
-    if(_reg_dlg)  delete _reg_dlg;
-    _reg_dlg = nullptr;
+    if(_login_dlg)
+    {
+        delete _login_dlg;
+        _login_dlg = nullptr;
+    }
+
+    if(_reg_dlg)
+    {
+        delete _reg_dlg;
+        _reg_dlg = nullptr;
+    }
 }
 
 void MainWindow::SlotSwitchToRegister()
 {
     if(_reg_dlg == nullptr) _reg_dlg = new RegisterDialog();
+    takeCentralWidget();
     setCentralWidget(_reg_dlg);
     _login_dlg->hide();
     _reg_dlg->show();

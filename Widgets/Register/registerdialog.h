@@ -1,7 +1,19 @@
+/**
+ * @file registerdialog.h
+ * @author yunyin (yunyin_jayyi@qq.com)
+ * @brief register dialog for login window
+ * @version 0.0.1
+ * @date 2024-04-09
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+*/
 #ifndef REGISTERDIALOG_H
 #define REGISTERDIALOG_H
 
 #include <QDialog>
+
+#include "../../global.h"
 
 namespace Ui {
 class RegisterDialog;
@@ -27,6 +39,13 @@ public:
     ~RegisterDialog();
 
 private:
+    void showTip(QString str, bool b_ok = false);
+    void initHttpHandlers();
+private slots:
+    void on_get_code_btn_clicked();
+    void slot_reg_mod_finish(ReqId id, QString res, ErrorCodes err);
+private:
+    QMap<ReqId, std::function<void(const QJsonObject&)>> _handlers;
     Ui::RegisterDialog *ui;     ///< ui object from designer
 };
 

@@ -26,15 +26,27 @@ endif()
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     message("Current compile is GCC")
 else()
-    message(FATAL_ERROR "Current compile is ${CMAKE_CXX_COMPILER_ID}, not support")
+    # message(FATAL_ERROR "Current compile is ${CMAKE_CXX_COMPILER_ID}, not support")
 endif()
 
 set(RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools Network)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools Network)
 
 set(RESOURCE_FILES ./res/res.qrc)
+
+set(GLOBAL_FILES
+        global.h
+        global.cpp)
+
+set(HELPER_FILES
+        Singleton/Singleton.h)
+
+set(NETWORK_FILES
+        Network/HttpMgr.h
+        Network/HttpMgr.cpp)
+
 set(LOGIN_FILES
         Widgets/Login/logindialog.h
         Widgets/Login/logindialog.cpp
@@ -53,6 +65,9 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        ${GLOBAL_FILES}
+        ${NETWORK_FILES}
+        ${HELPER_FILES}
         ${LOGIN_FILES}
         ${REGISTER_FILES}
         ${STYLE_FILES}
@@ -66,7 +81,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     )
 endif()
 
-target_link_libraries(yunyin_chat PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(yunyin_chat PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network)
 
 set_target_properties(yunyin_chat PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

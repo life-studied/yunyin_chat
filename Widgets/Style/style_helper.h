@@ -26,6 +26,9 @@ void set_style(QApplication& a)
         a.setStyleSheet(style);
         qss_file.close();
     }
+    else{
+        qDebug() << "stylesheet.qss open failed";
+    }
 }
 
 #endif // STYLE_HELPER_H
