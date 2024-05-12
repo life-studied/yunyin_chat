@@ -46,4 +46,6 @@ enum ErrorCodes{
 };
 
 
+extern QString gate_url_prefix;
+
 #endif 

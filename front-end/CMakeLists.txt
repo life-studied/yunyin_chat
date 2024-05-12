@@ -26,10 +26,11 @@ endif()
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     message("Current compile is GCC")
 else()
-    # message(FATAL_ERROR "Current compile is ${CMAKE_CXX_COMPILER_ID}, not support")
+    message(FATAL_ERROR "Current compile is ${CMAKE_CXX_COMPILER_ID}, not support")
 endif()
 
 set(RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
+configure_file(config.ini ${CMAKE_CURRENT_BINARY_DIR}/config.ini COPYONLY)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools Network)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools Network)

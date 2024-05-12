@@ -4,9 +4,12 @@
 
 ## Run
 
+### Front-End
+
 ​	本项目使用`cmake`构建：
 
 ```shell
+# front-end
 cmake -S . -B build -G "MinGW Makefiles" && cmake --build build
 cd build && yunyin_chat.exe
 ```
@@ -19,9 +22,30 @@ cd build && yunyin_chat.exe
     * C:\Qt\6.5.1\mingw_64\lib
     * C:\Qt\Tools\mingw1120_64\bin
 
+### Gate-Server
+
+​	gate-server depend on MSVC (temp now).
+
+### Verify-Server 
+
+​	varify-server depend on nodejs.
+
+```shell
+npm install @grpc/grpc-js
+npm install uuid
+npm install 
+```
+
+
+
 ## Arch
 
-​	
+* 客户端：前端使用QT，使用HTTP与网关通信
+* 网关：转发请求到后端服务。使用gRpc与验证服务通信，使用asio与后端server通信
+* 验证服务：使用Nodejs编写，调用第三方邮件接口
+* 后台服务器：处理请求操作和数据
+
+![chat_arch](./assets/chat_arch.png)
 
 ## Documents
 

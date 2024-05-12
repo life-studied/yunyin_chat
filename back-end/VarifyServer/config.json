@@ -1,0 +1,15 @@
+{
+    "email": {
+      "user": "yunyin_jayyi@qq.com",
+      "pass": "eddhufpldlqebfjc"
+    },
+    "mysql": {
+        "host": "127.0.0.1",
+        "port": 3306
+    },
+    "redis": {
+        "host": "127.0.0.1",
+        "port": 6379,
+        "passwd": "123456"
+    }
+}
