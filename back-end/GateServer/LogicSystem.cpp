@@ -2,6 +2,11 @@
 #include "HttpConnection.h"
 #include "VerifyGrpcClient.h"
 
+namespace beast = boost::beast;         // from <boost/beast.hpp>
+namespace http = beast::http;           // from <boost/beast/http.hpp>
+namespace net = boost::asio;            // from <boost/asio.hpp>
+using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
+
 LogicSystem::LogicSystem() {
 	RegGet("/get_test", [](std::shared_ptr<HttpConnection> connection) {
 		beast::ostream(connection->_response.body()) << "receive get_test req " << std::endl;
@@ -31,7 +36,7 @@ LogicSystem::LogicSystem() {
 
 		auto email = src_root["email"].asString();
 		GetVarifyRsp rsp = VerifyGrpcClient::GetInstance()->GetVarifyCode(email);
-		cout << "email is " << email << endl;
+		std::cout << "email is " << email << std::endl;
 		root["error"] = rsp.error();
 		root["email"] = src_root["email"];
 		std::string jsonstr = root.toStyledString();

@@ -21,5 +21,3 @@ enum ErrorCodes {
 	RPCFailed = 1002,  //RPC«Î«Û¥ÌŒÛ
 };
 
-class ConfigMgr;
-extern ConfigMgr gCfgMgr;
