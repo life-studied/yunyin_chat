@@ -1,15 +1,16 @@
 {
     "email": {
-      "user": "yunyin_jayyi@qq.com",
-      "pass": "eddhufpldlqebfjc"
+      "user": "secondtonone1@163.com",
+      "pass": "CRWTAZOSNCWDDQQTllfc"
     },
     "mysql": {
-        "host": "127.0.0.1",
-        "port": 3306
+      "host": "81.68.86.146",
+      "port": 3308,
+      "passwd": "123456"
     },
-    "redis": {
-        "host": "127.0.0.1",
-        "port": 6379,
-        "passwd": "123456"
+    "redis":{
+      "host": "81.68.86.146",
+      "port": 6380,
+      "passwd": "123456"
     }
 }

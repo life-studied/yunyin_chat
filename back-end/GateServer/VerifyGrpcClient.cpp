@@ -59,15 +59,14 @@ GetVarifyRsp VerifyGrpcClient::GetVarifyCode(std::string email)
 	GetVarifyReq request;
 	request.set_email(email);
 	auto stub = _pool->getConnection();
+	ConnectGuard guard(stub, _pool);
 	Status status = stub->GetVarifyCode(&context, request, &reply);
 
 	if (status.ok()) {
-		_pool->returnConnection(std::move(stub));
 		return reply;
 	}
 	else {
 		reply.set_error(ErrorCodes::RPCFailed);
-		_pool->returnConnection(std::move(stub));
 		return reply;
 	}
 }
@@ -78,4 +77,12 @@ VerifyGrpcClient::VerifyGrpcClient()
 	std::string host = config_mgr["VarifyServer"]["Host"];
 	std::string port = config_mgr["VarifyServer"]["Port"];
 	_pool.reset(new RPConPool(5, host, port));
+}
+
+ConnectGuard::ConnectGuard(std::unique_ptr<VarifyService::Stub>& stub, std::unique_ptr<RPConPool>& pool) : stub_(stub), pool_(pool) {}
+
+
+ConnectGuard::~ConnectGuard()
+{
+	pool_->returnConnection(std::move(stub_));
 }

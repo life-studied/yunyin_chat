@@ -48,3 +48,12 @@ private:
 	std::unique_ptr<RPConPool> _pool;
 };
 
+class ConnectGuard
+{
+public:
+	ConnectGuard(std::unique_ptr<VarifyService::Stub>& stub, std::unique_ptr<RPConPool>& pool);
+	~ConnectGuard();
+private:
+	std::unique_ptr<VarifyService::Stub>& stub_;
+	std::unique_ptr<RPConPool>& pool_;
+};

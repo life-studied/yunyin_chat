@@ -9,11 +9,13 @@
 
 #include "CServer.h"
 #include "ConfigMgr.h"
+#include "Test.h"
 
 int main()
 {
 	try
 	{
+		TestAll();
 		auto& gCfgMgr = ConfigMgr::GetInstance();
 		std::string gate_port_str = gCfgMgr["GateServer"]["Port"];
 		unsigned short gate_port = atoi(gate_port_str.c_str());

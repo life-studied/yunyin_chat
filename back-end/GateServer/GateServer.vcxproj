@@ -23,7 +23,7 @@
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{9d3075e4-189f-4c1c-834c-7405d6aa5aba}</ProjectGuid>
     <RootNamespace>GateServer</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -65,7 +65,7 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="PropertySheet.props" />
+    <Import Project="PropertySheetVcpkg.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -122,6 +122,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -154,6 +155,7 @@
     <ClCompile Include="LogicSystem.cpp" />
     <ClCompile Include="message.grpc.pb.cc" />
     <ClCompile Include="message.pb.cc" />
+    <ClCompile Include="RedisMgr.cpp" />
     <ClCompile Include="VerifyGrpcClient.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,7 +167,9 @@
     <ClInclude Include="LogicSystem.h" />
     <ClInclude Include="message.grpc.pb.h" />
     <ClInclude Include="message.pb.h" />
+    <ClInclude Include="RedisMgr.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Test.h" />
     <ClInclude Include="VerifyGrpcClient.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
