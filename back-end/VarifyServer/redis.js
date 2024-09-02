@@ -1,20 +1,20 @@
 const config_module = require('./config')
 const Redis = require("ioredis");
-// ´´½¨Redis¿Í»§¶ËÊµÀı
+// åˆ›å»ºRediså®¢æˆ·ç«¯å®ä¾‹
 const RedisCli = new Redis({
-  host: config_module.redis_host,       // Redis·şÎñÆ÷Ö÷»úÃû
-  port: config_module.redis_port,        // Redis·şÎñÆ÷¶Ë¿ÚºÅ
-  password: config_module.redis_passwd, // RedisÃÜÂë
+  host: config_module.redis_host,       // RedisæœåŠ¡å™¨ä¸»æœºå
+  port: config_module.redis_port,        // RedisæœåŠ¡å™¨ç«¯å£å·
+  password: config_module.redis_passwd, // Rediså¯†ç 
 });
 /**
- * ¼àÌı´íÎóĞÅÏ¢
+ * ç›‘å¬é”™è¯¯ä¿¡æ¯
  */
 RedisCli.on("error", function (err) {
   console.log("RedisCli connect error");
   RedisCli.quit();
 });
 /**
- * ¸ù¾İkey»ñÈ¡value
+ * æ ¹æ®keyè·å–value
  * @param {*} key 
  * @returns 
  */
@@ -33,14 +33,14 @@ async function GetRedis(key) {
     }
   }
 /**
- * ¸ù¾İkey²éÑ¯redisÖĞÊÇ·ñ´æÔÚkey
+ * æ ¹æ®keyæŸ¥è¯¢redisä¸­æ˜¯å¦å­˜åœ¨key
  * @param {*} key 
  * @returns 
  */
 async function QueryRedis(key) {
     try{
         const result = await RedisCli.exists(key)
-        //  ÅĞ¶Ï¸ÃÖµÊÇ·ñÎª¿Õ Èç¹ûÎª¿Õ·µ»Ønull
+        //  åˆ¤æ–­è¯¥å€¼æ˜¯å¦ä¸ºç©º å¦‚æœä¸ºç©ºè¿”å›null
         if (result === 0) {
           console.log('result:<','<'+result+'>','This key is null...');
           return null
@@ -53,7 +53,7 @@ async function QueryRedis(key) {
     }
   }
 /**
- * ÉèÖÃkeyºÍvalue£¬²¢¹ıÆÚÊ±¼ä
+ * è®¾ç½®keyå’Œvalueï¼Œå¹¶è¿‡æœŸæ—¶é—´
  * @param {*} key 
  * @param {*} value 
  * @param {*} exptime 
@@ -61,9 +61,9 @@ async function QueryRedis(key) {
  */
 async function SetRedisExpire(key,value, exptime){
     try{
-        // ÉèÖÃ¼üºÍÖµ
+        // è®¾ç½®é”®å’Œå€¼
         await RedisCli.set(key,value)
-        // ÉèÖÃ¹ıÆÚÊ±¼ä£¨ÒÔÃëÎªµ¥Î»£©
+        // è®¾ç½®è¿‡æœŸæ—¶é—´ï¼ˆä»¥ç§’ä¸ºå•ä½ï¼‰
         await RedisCli.expire(key, exptime);
         return true;
     }catch(error){
@@ -72,7 +72,7 @@ async function SetRedisExpire(key,value, exptime){
     }
 }
 /**
- * ÍË³öº¯Êı
+ * é€€å‡ºå‡½æ•°
  */
 function Quit(){
     RedisCli.quit();

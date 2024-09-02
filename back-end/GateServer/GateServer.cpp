@@ -15,7 +15,7 @@ int main()
 {
 	try
 	{
-		TestAll();
+		//TestAll();
 		auto& gCfgMgr = ConfigMgr::GetInstance();
 		std::string gate_port_str = gCfgMgr["GateServer"]["Port"];
 		unsigned short gate_port = atoi(gate_port_str.c_str());

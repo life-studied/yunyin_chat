@@ -1,21 +1,21 @@
 const nodemailer = require('nodemailer');
 const config_module = require("./config")
 /**
- * ´´½¨·¢ËÍÓÊ¼şµÄ´úÀí
+ * åˆ›å»ºå‘é€é‚®ä»¶çš„ä»£ç†
  */
 let transport = nodemailer.createTransport({
     host: 'smtp.qq.com',
     port: 465,
     secure: true,
     auth: {
-        user: config_module.email_user, // ·¢ËÍ·½ÓÊÏäµØÖ·
-        pass: config_module.email_pass // ÓÊÏäÊÚÈ¨Âë»òÕßÃÜÂë
+        user: config_module.email_user, // å‘é€æ–¹é‚®ç®±åœ°å€
+        pass: config_module.email_pass // é‚®ç®±æˆæƒç æˆ–è€…å¯†ç 
     }
 });
 
 /**
- * ·¢ËÍÓÊ¼şµÄº¯Êı
- * @param {*} mailOptions_ ·¢ËÍÓÊ¼şµÄ²ÎÊı
+ * å‘é€é‚®ä»¶çš„å‡½æ•°
+ * @param {*} mailOptions_ å‘é€é‚®ä»¶çš„å‚æ•°
  * @returns 
  */
 function SendMail(mailOptions_){
@@ -25,7 +25,7 @@ function SendMail(mailOptions_){
                 console.log(error);
                 reject(error);
             } else {
-                console.log('ÓÊ¼şÒÑ³É¹¦·¢ËÍ£º' + info.response);
+                console.log('é‚®ä»¶å·²æˆåŠŸå‘é€ï¼š' + info.response);
                 resolve(info.response)
             }
         });
